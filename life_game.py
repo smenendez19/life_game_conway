@@ -1,21 +1,23 @@
-import pygame
-import sys
-import numpy as np
+# Imports
+
 import time
 
-#Inicio pygame
+import numpy as np
+import pygame
+
+# Inicio pygame
 pygame.init()
-pygame.display.set_caption('Juego de la Vida') 
+pygame.display.set_caption("Juego de la Vida")
 
 # Dimensiones de la ventana
-width, height , width_max , height_max = 500, 500 , 600 , 600
+width, height, width_max, height_max = 500, 500, 600, 600
 screen = pygame.display.set_mode((height_max, width))
 
 # Fondo
 black = 25, 25, 25
-white = (255, 255, 255) 
-green = (0, 255, 0) 
-blue = (0, 0, 128) 
+white = (255, 255, 255)
+green = (0, 255, 0)
+blue = (0, 0, 128)
 screen.fill(black)
 
 # Celdas
@@ -29,11 +31,11 @@ gameState = np.zeros((nxC, nyC))
 # Automatas de ejemplo
 
 # Palo
-#gameState[5, 3] = 1
-#gameState[5, 4] = 1
-#gameState[5, 5] = 1
+# gameState[5, 3] = 1
+# gameState[5, 4] = 1
+# gameState[5, 5] = 1
 
-# Nave 
+# Nave
 gameState[10, 3] = 1
 gameState[11, 3] = 1
 gameState[12, 3] = 1
@@ -73,18 +75,18 @@ while True:
         if celX < nxC and celY < nyC:
             newGameState[celX, celY] = not mouseClick[2]
     # Dibujo texto
-    font = pygame.font.Font('freesansbold.ttf', 20)
-    font_2 = pygame.font.Font('freesansbold.ttf', 10)
+    font = pygame.font.Font("freesansbold.ttf", 20)
+    font_2 = pygame.font.Font("freesansbold.ttf", 10)
     if pauseExect:
-        text_pause = font.render('PAUSA', True,white,black)
-        screen.blit(text_pause,(height_max - 99, 0))
+        text_pause = font.render("PAUSA", True, white, black)
+        screen.blit(text_pause, (height_max - 99, 0))
     else:
-        text_pause = font.render('', True,white,black)
-        screen.blit(text_pause,(height_max - 99, 0))
-    text_gen = font_2.render('GENERACION: ' + str(num_generation), True,white,black)
-    screen.blit(text_gen,(height_max - 99, 30))
-    text_pob = font_2.render('POBLACION: ' + str(num_poblacion), True,white,black)
-    screen.blit(text_pob,(height_max - 99, 50))
+        text_pause = font.render("", True, white, black)
+        screen.blit(text_pause, (height_max - 99, 0))
+    text_gen = font_2.render("GENERACION: " + str(num_generation), True, white, black)
+    screen.blit(text_gen, (height_max - 99, 30))
+    text_pob = font_2.render("POBLACION: " + str(num_poblacion), True, white, black)
+    screen.blit(text_pob, (height_max - 99, 50))
     # Loop por cada celda
     for y in range(0, nxC):
         for x in range(0, nyC):
